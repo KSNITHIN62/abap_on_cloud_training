@@ -4,6 +4,7 @@
 define view entity ZKSN_BOOKING1 as select from /dmo/booking_m
 
 composition [1..*] of zksn_booksuppl as _suppl
+
 association to parent ZKSN_R_TRAVEL as _travel on
     $projection. TravelId = _travel.TravelId
 
