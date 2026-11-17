@@ -18,8 +18,12 @@ association of one to one /DMO/I_Overall_Status_VH as _overallstatus on
     $projection.OverallStatus = _overallstatus.OverallStatus            
 {
     key travel_id as TravelId,
+    @ObjectModel.text.element: [ 'AgencyName' ]
     agency_id as AgencyId,
+    _agency.Name as AgencyName,
+    @ObjectModel.text.element: [ 'CustomerName' ]
     customer_id as CustomerId,
+    concat(concat(_customer.FirstName, ''), _customer.LastName) as CustomerName,
     begin_date as BeginDate,
     end_date as EndDate,
     @Semantics.amount.currencyCode: 'CurrencyCode'
@@ -28,7 +32,16 @@ association of one to one /DMO/I_Overall_Status_VH as _overallstatus on
     total_price as TotalPrice,
     currency_code as CurrencyCode,
     description as Description,
+    @ObjectModel.text.element: [ 'StatusText' ]
     overall_status as OverallStatus,
+    _overallstatus._Text[ Language = $session.system_language].Text as StatusText,
+    
+    case overall_status
+    when 'O' then 3
+    when 'A' then 2
+    when 'R' then 1
+    else 0
+    end as overallstatus1,
     @Semantics.user.createdBy: true
     created_by as CreatedBy,
     @Semantics.systemDateTime.createdAt: true

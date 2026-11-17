@@ -1,6 +1,7 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Travel Root Entity Processor'
 @Metadata.ignorePropagatedAnnotations: false
+@Metadata.allowExtensions: true
 define root view entity ZKSN_R_TRAVEL_PROCESSOR as projection on ZKSN_R_TRAVEL
 {
     key TravelId,
@@ -9,10 +10,14 @@ define root view entity ZKSN_R_TRAVEL_PROCESSOR as projection on ZKSN_R_TRAVEL
     BeginDate,
     EndDate,
     BookingFee,
+    CustomerName,
+    AgencyName,
     TotalPrice,
     CurrencyCode,
     Description,
     OverallStatus,
+    overallstatus1,
+    StatusText,
     CreatedBy,
     CreatedAt,
     LastChangedBy,

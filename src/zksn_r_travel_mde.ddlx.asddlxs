@@ -1,0 +1,39 @@
+@Metadata.layer: #CUSTOMER
+annotate entity ZKSN_R_TRAVEL_PROCESSOR
+    with 
+{
+   @UI.selectionField: [{ position: 10 }]
+   @UI.lineItem: [{ position: 10 }]
+    TravelId;
+   
+   @UI.selectionField: [{ position: 20 }]
+   @UI.lineItem: [{ position: 20 }]
+    AgencyId;
+    
+    @UI.selectionField: [{ position: 30 }]
+    @UI.lineItem: [{ position: 30 }]
+    CustomerId;
+    
+    @UI.lineItem: [{ position: 40 }]
+    BeginDate;
+//    EndDate;
+//    BookingFee;
+//    TotalPrice;
+//    CurrencyCode;
+//    Description;
+
+@UI.selectionField: [{ position: 50 }]
+@UI.lineItem: [{ position: 50, importance: #HIGH, criticality: 'overallstatus1'}]
+    OverallStatus;
+//    CreatedBy;
+//    CreatedAt;
+//    LastChangedBy;
+//    LastChangedAt;
+//    /* Associations */
+//    _agency;
+//    _booking;
+//    _currency;
+//    _customer;
+//    _overallstatus;
+//    
+}
