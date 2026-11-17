@@ -31,7 +31,7 @@ association of one to one /DMO/I_Overall_Status_VH as _overallstatus on
     overall_status as OverallStatus,
     @Semantics.user.createdBy: true
     created_by as CreatedBy,
-    @Semantics.systemDateTime.lastChangedAt: true
+    @Semantics.systemDateTime.createdAt: true
     created_at as CreatedAt,
     @Semantics.user.lastChangedBy: true
     last_changed_by as LastChangedBy,
