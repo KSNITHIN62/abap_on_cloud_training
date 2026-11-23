@@ -3,7 +3,7 @@
 @Metadata.ignorePropagatedAnnotations: true
 define view entity ZKSN_BOOKING1 as select from /dmo/booking_m
 
-composition [1..*] of zksn_booksuppl as _suppl
+composition [1..*] of ZKSN_BOOKSUPPL as _suppl
 
 association to parent ZKSN_R_TRAVEL as _travel on
     $projection. TravelId = _travel.TravelId
@@ -27,7 +27,19 @@ association of one to one /DMO/I_Booking_Status_VH as _bookingstatus on
 key travel_id as TravelId,
 key booking_id as BookingId,
 booking_date as BookingDate,
+
+@Consumption.valueHelpDefinition: [{ 
+entity.name: '/DMO/I_Customer',
+entity.element: 'CustomerID'
+
+ }]
+ 
 customer_id as CustomerId,
+
+@Consumption.valueHelpDefinition: [{ 
+entity.name: '/DMO/I_Carrier',
+entity.element: 'AirlineID'
+ }]
 carrier_id as CarrierId,
 connection_id as ConnectionId,
 flight_date as FlightDate,
