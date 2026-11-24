@@ -1,6 +1,7 @@
 @AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Booking Suppliment Processor'
 @Metadata.ignorePropagatedAnnotations: false
+@Metadata.allowExtensions: true
 define view entity ZKSN_BOOKSUPPL_PROCESSOR as projection on ZKSN_BOOKSUPPL
 {
     key TravelId,

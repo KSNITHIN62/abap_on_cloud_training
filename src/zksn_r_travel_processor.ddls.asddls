@@ -22,6 +22,7 @@ define root view entity ZKSN_R_TRAVEL_PROCESSOR as projection on ZKSN_R_TRAVEL
     CreatedAt,
     LastChangedBy,
     LastChangedAt,
+    LogoUrl,
     /* Associations */
     _agency,
     _booking: redirected to composition child ZKSN_BOOKING1_PROCESSOR, 

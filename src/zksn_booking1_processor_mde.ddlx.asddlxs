@@ -1,0 +1,61 @@
+@Metadata.layer: #CUSTOMER
+@UI.headerInfo:{ typeName: 'BookingRequest',
+                 typeNamePlural: 'BookingRequests',
+                 title:{ value: 'BookingDate'},
+                 description:{value: 'BookingId'} }
+                 
+                 
+annotate entity ZKSN_BOOKING1_PROCESSOR
+    with 
+{
+
+@UI.facet: [{ 
+
+              purpose: #STANDARD,
+              type: #IDENTIFICATION_REFERENCE,
+              position: 10,
+              label: 'Booking' },
+              
+              { 
+                purpose: #STANDARD,
+                type: #LINEITEM_REFERENCE,
+                label: 'Supplement',
+                targetElement: '_suppl',
+                position: 20
+                              
+              }
+              
+              ]
+
+  
+//   TravelId;
+  @UI.identification: [{ position: 10 }]
+  @UI.lineItem: [{ position: 10 }]
+   BookingId;
+   
+   @UI.identification: [{ position: 20 }] 
+   @UI.lineItem: [{ position: 20 }]
+   BookingDate;
+   
+   @UI.identification: [{ position: 30 }]
+   @UI.lineItem: [{ position: 30 }]
+   CustomerId;
+   @UI.identification: [{ position: 40 }]
+   @UI.lineItem: [{ position: 40 }]
+   CarrierId;
+   @UI.lineItem: [{ position: 50 }]
+   ConnectionId;
+//   FlightDate;
+//   FlightPrice;
+//   CurrencyCode;
+//   BookingStatus;
+//   LastChangedAt;
+//   /* Associations */
+//   _bookingstatus;
+//   _carrier;
+//   _connection;
+//   _customer;
+//   _suppl;
+//   _travel;
+//    
+}

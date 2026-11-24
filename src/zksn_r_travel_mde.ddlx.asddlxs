@@ -1,9 +1,92 @@
 @Metadata.layer: #CUSTOMER
+@UI.headerInfo:{ typeName: 'Travel Request',
+                 typeNamePlural: 'Travel Requests',
+                 imageUrl: 'LogoUrl',
+                 title: {value: 'TravelId'},
+                 description:{ value: 'Description' }
+                 }
+                 
 annotate entity ZKSN_R_TRAVEL_PROCESSOR
     with 
 {
+//   @UI.lineItem: [{ position: 1 }]
+//   LogoUrl;
+   
+   @UI.facet: [{ 
+              purpose: #STANDARD,
+              id: 'First',
+              type: #DATAPOINT_REFERENCE,
+              qualifier: 'overallstatus1',
+              position: 10
+              
+    },
+    
+    { 
+                purpose: #STANDARD,
+                id: 'Second',
+                type: #DATAPOINT_REFERENCE,
+                qualifier: 'Spiderman',
+                position: 20
+     },
+     
+     
+     {           purpose: #STANDARD,
+                 id:'Collection',
+                 type: #COLLECTION,
+                 position: 10,
+                 label: 'General Information'    
+     
+     
+     },
+     
+//    
+     
+     { purpose: #STANDARD,
+       id:'Basic',
+       type: #IDENTIFICATION_REFERENCE,
+       label: 'Basic Information',
+       position: 10,
+       parentId: 'Collection'   
+     
+     },
+     
+     {purpose: #STANDARD,
+      id:'Dates',
+      type: #FIELDGROUP_REFERENCE,
+      label:'Dates',
+      position: 20,
+      parentId: 'Collection',
+      targetQualifier: 'Batman'
+      
+     
+     
+     },
+     
+     { 
+     
+     purpose: #STANDARD,
+     id:'Purpose',
+     type: #FIELDGROUP_REFERENCE,
+     targetQualifier:  'CatMan',
+     position: 30,
+     parentId: 'Collection',
+     label: 'Price'
+     
+     },
+     
+     
+      { 
+           purpose: #STANDARD,
+            id:'Booking',
+            type: #LINEITEM_REFERENCE,
+            label: 'Booking',
+            targetElement: '_booking',
+            position: 20
+     }]
+    
    @UI.selectionField: [{ position: 10 }]
    @UI.lineItem: [{ position: 10 }]
+   @UI.identification: [{ position: 10 }]
     TravelId;
    
    @UI.selectionField: [{ position: 20 }]
@@ -12,21 +95,32 @@ annotate entity ZKSN_R_TRAVEL_PROCESSOR
     
     @UI.selectionField: [{ position: 30 }]
     @UI.lineItem: [{ position: 30 }]
+     @UI.identification: [{ position: 20 }]
     CustomerId;
     
     @UI.lineItem: [{ position: 40 }]
     BeginDate;
 //    EndDate;
 //    BookingFee;
-//    TotalPrice;
+    @UI.dataPoint:{ qualifier: 'overallstatus1', title: 'TotalPrice' }
+    @UI.fieldGroup: [{ qualifier: 'CatMan', position: 10, label: 'Total Price'  }]
+      TotalPrice;
 //    CurrencyCode;
-//    Description;
+
+     @UI.identification: [{ position: 30 }]
+      Description;
 
 @UI.selectionField: [{ position: 50 }]
 @UI.lineItem: [{ position: 50, importance: #HIGH, criticality: 'overallstatus1'}]
+@UI.dataPoint:{qualifier: 'Spiderman', title: 'Status', criticality: 'overallstatus1'}
+@UI.fieldGroup: [{ qualifier: 'Batman' , position: 30, label: 'Status' }]
+
     OverallStatus;
-//    CreatedBy;
-//    CreatedAt;
+    
+@UI.fieldGroup: [{ position:  10, qualifier: 'Batman', label: 'Created By' }]    
+     CreatedBy;
+    @UI.fieldGroup: [{ position:  20, qualifier: 'Batman', label: 'Created At' }]
+      CreatedAt;
 //    LastChangedBy;
 //    LastChangedAt;
 //    /* Associations */

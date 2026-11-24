@@ -19,6 +19,13 @@ association of one to one /DMO/I_Overall_Status_VH as _overallstatus on
 {
     key travel_id as TravelId,
     
+    
+   @Semantics.imageUrl: true
+cast(
+  'https://sanatanroots.com/wp-content/uploads/2025/11/1428252-i-1d37a0a20e63-780x470.webp'
+  as abap.char(255)
+) as LogoUrl,
+    
     @Consumption.valueHelpDefinition: [{  
     
       entity.name: '/DMO/I_Agency',

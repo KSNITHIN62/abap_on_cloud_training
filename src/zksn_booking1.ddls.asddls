@@ -41,6 +41,17 @@ entity.name: '/DMO/I_Carrier',
 entity.element: 'AirlineID'
  }]
 carrier_id as CarrierId,
+
+@Consumption.valueHelpDefinition: [{ 
+entity:{ name: '/DMO/I_Connection' ,
+        element: 'ConnectionID' },
+        
+        additionalBinding: [{ 
+        
+        localElement: 'CarrierId' ,
+        element: 'AirlineID'}]
+        
+ }]
 connection_id as ConnectionId,
 flight_date as FlightDate,
 @Semantics.amount.currencyCode: 'CurrencyCode'

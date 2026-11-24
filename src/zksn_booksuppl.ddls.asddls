@@ -19,6 +19,13 @@ association of one to one /DMO/I_SupplementText as _supplementtext on
 {
    key /dmo/booksuppl_m.travel_id as TravelId,
    key /dmo/booksuppl_m.booking_id as BookingId,
+   
+   @Consumption.valueHelpDefinition: [{ 
+   entity:{
+   name: '/DMO/I_Supplement',
+   element: 'SupplementID'  }
+   
+   }]
    key /dmo/booksuppl_m.booking_supplement_id as BookingSupplementId,
    /dmo/booksuppl_m.supplement_id as SupplementId,
    @Semantics.amount.currencyCode: 'CurrencyCode'
