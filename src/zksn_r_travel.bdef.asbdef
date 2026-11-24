@@ -1,0 +1,62 @@
+// Will tell RAP that developer want RAP to create the Code
+managed
+//Incase if developer want to plugin additional data use this class
+implementation in class zbp_ksn_r_travel unique;
+//Tell the RAP engine to syntax check the code strictly
+strict ( 2 );
+
+//Root Entity Behaviour
+define behavior for ZKSN_R_TRAVEL alias Travel
+//Tell the RAP in which table it has to READ, UPDATE, DELETE, MODIFY the data
+persistent table /dmo/travel_m
+//How the data is locked ENQUEUE, DEQUEUE - If the travel data is locked by one user
+//another user cannot parallely do the changes to the table
+lock master
+//To control data security Permission, Authority like who can create, delete, edit data
+authorization master ( instance )
+// It is a field which is used by framework to check whether the data is changed in meantime or not
+etag master LastChangedAt
+{
+//  create ( authorization : global );
+
+// BEHAVIOUR what we want RAP to generate for us
+  create;
+  update;
+  delete;
+
+//  Static feature control which says that userr cannot change primary key in update mode
+//  field ( readonly ) TravelId;
+// That create of booking depends on travel, like you cannot create a SO line item with Header
+  association _booking { create; }
+}
+
+// Behaviour for Booking Entity
+define behavior for ZKSN_BOOKING1 alias booking
+persistent table /dmo/booking_m
+// If parent data is locked then child data is also locked
+lock dependent by _travel
+// lets check the authorization and role @ parent if passes then we allow booking
+authorization dependent by _travel
+etag master LastChangedAt
+{
+  update;
+  delete;
+// While user is editing the booking data, they cannot change the Travel data
+//  field ( readonly ) TravelId, BookingId;
+  field ( readonly ) TravelId;
+  association _travel;
+  association _suppl { create; }
+}
+
+define behavior for ZKSN_BOOKSUPPL alias Supplement
+persistent table /dmo/booksuppl_m
+lock dependent by _travel
+authorization dependent by _travel
+etag master LastChangedAt
+{
+  update;
+  delete;
+  field ( readonly ) TravelId, BookingId, BookingSupplementId;
+  association _travel;
+  association _booking;
+}
